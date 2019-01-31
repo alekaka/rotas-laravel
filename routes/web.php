@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
+    return '<h1>LARAVEL</h1>';
+});
+
+Route::get('/ola', function () {
+    return '<h1>Seja bem vindo!!</h1>';
+});
+
+Route::get('/ola/sejabemvindo', function () {
     return view('welcome');
 });
