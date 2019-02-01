@@ -63,3 +63,18 @@ Route::get('/seunomesemregra/{nome?}', function ($nome = null) {
         echo "Voce nao passou nenhum nome";
     } 
 });
+
+// Grupo de rotas
+Route::prefix('app')->group(function() {
+    Route::get("/", function() {
+        return "Pagina principal do App";
+    });
+
+    Route::get("profile", function() {
+        return "Pagina Profile";
+    });
+
+    Route::get("about", function() {
+        return "Meu about";
+    });
+});
