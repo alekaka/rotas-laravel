@@ -1,16 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-use Illuminate\Routing\Redirector;
+use Illuminate\Http\Request;
 
 // Rota com return
 Route::get('/', function () {
@@ -83,4 +73,60 @@ Route::prefix('app')->group(function() {
 // Redirecionamento de rotas
 Route::get('/aqui', function() {
     return redirect()->route('/ola');
+}); 
+
+// Rota com view
+Route::get('/hello', function() {
+    return view('hello');
+});
+
+// Rota com view
+Route::get('/viewonome/{nome}/{sobrenome}', function($nome, $sobrenome) {
+    return view('hellonome', ['nome' => $nome, 'sobrenome' => $sobrenome]);
+});
+
+// Rota return
+Route::get('/rest/hello', function() {
+    return "Hello (GET)";
+});
+
+// Rota post
+Route::post('/rest/hello', function() {
+    return "Hello (POST)";
+});
+
+// Rota delete
+Route::delete('/rest/hello', function() {
+    return "Hello (DELETE)";
+});
+
+// Rota put
+Route::put('/rest/hello', function() {
+    return "Hello (PUT)";
+});
+
+// Rota patch
+Route::patch('/rest/hello', function() {
+    return "Hello (PATCH)";
+});
+
+// Rota options
+Route::options('/rest/hello', function() {
+    return "Hello (OPTIONS)";
+});
+
+Route::post('/rest/imprimir', function(Request $req) {
+    $nome = $req->input('nome');
+    $idade = $req->input('idade');
+    return "Hello $nome idade: $idade (POST)";
+});
+
+// Route rest limitado get, post
+Route::match(['get', 'post'], '/rest/hello2', function () {
+    return "Hello Word 2";
+});
+
+// Route rest com todos os metodos http 
+Route::any('/rest/hello3', function () {
+    return "Hello Word 3";
 });
