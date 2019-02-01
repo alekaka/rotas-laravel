@@ -130,3 +130,24 @@ Route::match(['get', 'post'], '/rest/hello2', function () {
 Route::any('/rest/hello3', function () {
     return "Hello Word 3";
 });
+
+// Route adicionando um nome
+Route::get('/produtos', function () {
+    echo "<h1>Produtos</h1>";
+    echo "<ol>";
+    echo "<li>Notebook</li>";
+    echo "<li>Impressao</li>";
+    echo "<li>Mouse</li>";
+    echo "</ol>";
+})->name('meusprodutos');
+
+// Route usando o nome da rota
+Route::get('/linkprodutos', function () {
+    $url = route('meusprodutos');
+    echo "<a href=\"".$url."\">Meus produtos</a>";
+});
+
+// Route redirecionamento
+Route::get('/redirecionarprodutos', function () {
+    return redirect()->route('meusprodutos');
+});
