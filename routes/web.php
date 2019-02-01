@@ -10,6 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use Illuminate\Routing\Redirector;
 
 // Rota com return
 Route::get('/', function () {
@@ -77,4 +78,9 @@ Route::prefix('app')->group(function() {
     Route::get("about", function() {
         return "Meu about";
     });
+});
+
+// Redirecionamento de rotas
+Route::get('/aqui', function() {
+    return redirect()->route('/ola');
 });
